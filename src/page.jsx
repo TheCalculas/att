@@ -7,22 +7,22 @@ function Page() {
   const [success, isSuccess] = useState();
   const fetchData = async () => {
     while (!success) {
-      setTimeout(async () => {
-        const response = await fetch(
-          `http://localhost:5000/attacker/checkUpdate`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const resData = await response.json();
-        if (response === 200) {
-          isSuccess(resData.success);
-          console.log(success);
+      // setInterval(async () => {
+      const response = await fetch(
+        `http://localhost:5000/attacker/checkUpdate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      }, 2000);
+      );
+      const resData = await response.json();
+      if (response.status === 200) {
+        if (!success) isSuccess(resData.success);
+        console.log(success);
+      }
+      // }, 2000);
     }
   };
 

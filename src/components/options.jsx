@@ -125,20 +125,20 @@ function Options() {
   };
 
   const handleClick = async (e) => {
-    const response = await fetch(`http://localhost:5000/attacker/doAttack`, {
+    const response = await fetch("http://localhost:5000/attacker/doAttack", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: {
+      body: JSON.stringify({
         attackOption: value,
         checkPoint: checkPoint,
-      },
+      }),
     });
     // const resData = await response.json();
 
     if (response.status === 200) {
-      alert("You've successfully defended!");
+      alert("You've successfully Attacked!");
     } else if (response.status === 400) {
       alert("You've failed to attack!");
     }
